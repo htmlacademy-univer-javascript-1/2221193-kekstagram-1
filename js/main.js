@@ -1,4 +1,4 @@
-function randomInt(min, max) {
+function randomInteger(min, max) {
   if (max < min || min < 0 || max == min)
   {
     return "Неправильно задан диапазон";
