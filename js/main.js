@@ -1,15 +1,15 @@
 const getRandomInt = (min, max) => {
   if (max < min || min < 0 || max === min)
   {
-    return "Неправильно задан диапазон";
+    return 'Неправильно задан диапазон';
   }
   const rand = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(rand);
-}
+};
 
 const checkLength = (str,max) => {
   return str.length <= max;
-}
+};
 
 const objectsArray = [];
 
@@ -21,7 +21,7 @@ const NAMES = [
   'Ира',
   'Катя',
   'Николай'
-]
+];
 
 const MESSAGES = [
   'Всё отлично!',
@@ -30,20 +30,20 @@ const MESSAGES = [
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
-]
+];
 
 const DESCRIPTIONS = [
   'Прекрасный снимок',
   'Прекрасное воспоминание',
   'Незабываемый опыт',
   'Фотография'
-]
+];
 
 const OBJECTS_COUNT = 25;
 
 const getRandomElement = (array) => {
   return array[getRandomInt(0, array.length - 1)];
-}
+};
 
 const addComments = (count) => {
   let comments = [];
@@ -56,7 +56,7 @@ const addComments = (count) => {
     });
   }
   return comments;
-}
+};
 
 const addPhoto = () => {
   for (let i = 0; i < OBJECTS_COUNT; i++){
@@ -68,5 +68,5 @@ const addPhoto = () => {
       comments: addComments(getRandomInt(1,3))
     });
   }
-}
+};
 addPhoto();
