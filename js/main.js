@@ -42,7 +42,7 @@ const DESCRIPTIONS = [
 const OBJECTS_COUNT = 25;
 
 const getRandomElement = (array) => {
-  return array[getRandomNumber(0, array.length - 1)];
+  return array[getRandomInt(0, array.length - 1)];
 };
 
 const addComments = (count) => {
