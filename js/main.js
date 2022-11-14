@@ -70,4 +70,4 @@ const addPhoto = () => {
     });
   }
 }
-addPhotos();
+addPhoto();
