@@ -1,14 +1,13 @@
 const getRandomInt = (min, max) => {
-  if (max < min || min < 0 || max == min)
+  if (max < min || min < 0 || max === min)
   {
     return "Неправильно задан диапазон";
   }
-  let rand = min - 0.5 + Math.random() * (max - min + 1);
+  const rand = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(rand);
 }
 
-const checkLength = (str,max) => 
-{
+const checkLength = (str,max) => {
   return str.length <= max;
 }
 
@@ -47,11 +46,11 @@ const getRandomElement = (array) => {
 }
 
 const addComments = (count) => {
-  comments = [];
+  let comments = [];
   for (let i = 0; i < count; i++) {
     comments.push({
       id: i,
-      avatar:  `img/avatar-${getRandomNumber(1, 6)}.svg`,
+      avatar:  `img/avatar-${getRandomInt(1, 6)}.svg`,
       message: getRandomElement(MESSAGES),
       name: getRandomElement(NAMES)
     });
