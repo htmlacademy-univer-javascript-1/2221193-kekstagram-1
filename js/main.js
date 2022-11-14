@@ -7,9 +7,9 @@ const getRandomInt = (min, max) => {
   return Math.round(rand);
 };
 
-const checkLength = (str,max) => {
-  return str.length <= max;
-};
+// const checkLength = (str,max) => {
+//   return str.length <= max;
+// };
 
 const objectsArray = [];
 
@@ -46,7 +46,7 @@ const getRandomElement = (array) => {
 };
 
 const addComments = (count) => {
-  let comments = [];
+  const comments = [];
   for (let i = 0; i < count; i++) {
     comments.push({
       id: i,
