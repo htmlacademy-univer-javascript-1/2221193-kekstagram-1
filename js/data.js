@@ -57,4 +57,7 @@ const addPhoto = () => {
 };
 
 export{addPhoto}
+<<<<<<< HEAD
 export{objectsArray}
+=======
+>>>>>>> 24a3beabe95b32763b597464992ec3f450a10e68
