@@ -49,8 +49,8 @@ const validateHash = (value) => {
       error: 'Хэш-теги не должны повторяться',
     },
     {
-      check: inputArray.some((item) => item.length > MAX_HASHTAG_SYMBOLS),
-      error: `Максимальная длина одного хэш-тега ${MAX_HASHTAG_SYMBOLS} символов, включая решётку`,
+      check: inputArray.some((item) => item.length > MAX_HASHTAG_LENGTH),
+      error: `Максимальная длина одного хэш-тега ${MAX_HASHTAG_LENGTH} символов, включая решётку`,
     },
     {
       check: inputArray.length > MAX_HASHTAGS,
@@ -85,4 +85,4 @@ const resetForm = () => {
 pristine.addValidator(inputHashtag, validateHash, error);
 pristine.addValidator(inputComment,confirmedComment, `Длина комментария должна быть не более ${MAX_COMMENT_LENGTH } символов`,);
 
-export{onFormInp,resetForm}
+export{onFormInp,resetForm};
