@@ -12,13 +12,13 @@ const renderPicture = (picture) => {
   element.querySelector('.picture__comments').textContent = picture.comments.length;
 
   return element;
-}
+};
 
 const renderPictures = () => {
   objectsArray.forEach((picture) => {
     fragment.appendChild(renderPicture(picture));
   });
   picturesBlock.appendChild(fragment);
-}
+};
 
 renderPictures();
