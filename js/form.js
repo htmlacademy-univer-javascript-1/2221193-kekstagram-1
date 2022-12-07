@@ -1,5 +1,5 @@
-import { isEscape } from "./util";
-import { onFormInp, resetForm } from "./validation-form";
+import { isEscape } from './util';
+import { onFormInp, resetForm } from './validation-form';
 
 
 const form = document.querySelector('.img-upload__form');
