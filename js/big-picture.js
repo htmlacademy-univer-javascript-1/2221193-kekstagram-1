@@ -74,3 +74,4 @@ const openBigPicture = (picture) => {
 };
 
 export{openBigPicture};
+
