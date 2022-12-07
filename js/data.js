@@ -56,7 +56,7 @@ const addPhoto = () => {
   }
 };
 
-export{addPhoto};
+addPhoto();
 
 export{objectsArray};
 
