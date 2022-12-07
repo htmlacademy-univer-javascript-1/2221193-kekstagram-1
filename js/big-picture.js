@@ -1,4 +1,5 @@
 import { createComments } from "./comments";
+import { isEscape } from "./util";
 
 const bigPicture = document.querySelector('.big-picture');
 const commentCounter = document.querySelector('.social__comment-count');
@@ -7,7 +8,7 @@ const closingButton = bigPicture.querySelector('.big-picture__cancel');
 const commentTemplate = bigPicture.querySelector('.social__comment');
 
 const onDocumentEscKeyDown = (evt) => {
-  if(evt.key === 'Escape'){
+  if(isEscape(evt)){
     bigPicture.classList.add('hidden');
     document.body.classList.remove('modal-open');
     document.removeEventListener('keydown',onDocumentEscKeyDown);
