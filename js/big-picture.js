@@ -1,5 +1,5 @@
-import { createComments } from "./comments.js";
-import { isEscape } from "./util.js";
+import { createComments } from './comments.js';
+import { isEscape } from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const commentCounter = document.querySelector('.social__comment-count');
