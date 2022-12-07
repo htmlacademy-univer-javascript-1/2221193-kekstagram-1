@@ -6,6 +6,6 @@ const createComments = (comment, template) => {
   newComment.querySelector('.social__text').textContent = comment.message;
 
   return newComment;
-}
+};
 
 export{createComments};
