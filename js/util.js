@@ -7,3 +7,4 @@ const getRandomElement = (array) => {
 const isEscape = (evt) => evt.key === 'Escape'
 
 export{getRandomElement, isEscape}
+
