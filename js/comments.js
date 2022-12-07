@@ -8,4 +8,4 @@ const createComments = (comment, template) => {
   return newComment;
 }
 
-export{createComments}
+export{createComments};
