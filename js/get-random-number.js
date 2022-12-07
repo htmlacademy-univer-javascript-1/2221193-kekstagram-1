@@ -7,4 +7,4 @@ const getRandomInt = (min, max) => {
   return Math.round(rand);
 };
 
-export{getRandomInt}
+export{getRandomInt};
