@@ -1,5 +1,5 @@
-import { createComments } from "./comments";
-import { isEscape } from "./util";
+import { createComments } from "./comments.js";
+import { isEscape } from "./util.js";
 
 const bigPicture = document.querySelector('.big-picture');
 const commentCounter = document.querySelector('.social__comment-count');
@@ -28,7 +28,7 @@ const addOnPictureClick = (picture, pictureData) => {
     comments.innerHTML = '';
 
     pictureData.comments.forEach((comment) => {
-      comments.appendChild(createComment(comment, commentTemplate));
+      comments.appendChild(createComments(comment, commentTemplate));
     });
 
     commentCounter.classList.add('hidden');
