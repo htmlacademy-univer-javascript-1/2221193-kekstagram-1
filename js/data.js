@@ -55,9 +55,8 @@ const addPhoto = () => {
     });
   }
 };
+addPhoto();
 
-export{addPhoto}
-
-export{objectsArray}
+export{objectsArray};
 
 
