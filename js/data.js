@@ -1,5 +1,5 @@
-import { getRandomInt } from "./get-random-number.js";
-import { getRandomElement } from "./util.js";
+import { getRandomInt } from './get-random-number.js';
+import { getRandomElement } from './util.js';
 
 const OBJECTS_COUNT = 25;
 
@@ -55,6 +55,9 @@ const addPhoto = () => {
     });
   }
 };
-addPhoto();
+
+export{addPhoto};
 
 export{objectsArray};
+
+
