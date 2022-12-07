@@ -1,5 +1,5 @@
 import { objectsArray } from './data';
-import { openBigPicture} from './big-picture.js'
+import { openBigPicture} from './big-picture.js';
 
 
 const picturesBlock = document.querySelector('.pictures');
