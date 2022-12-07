@@ -1,5 +1,5 @@
-import { addPhoto } from "./data.js";
 import './util.js';
-
-
-addPhoto();
+import './pictures.js';
+import './big-picture.js';
+import './validation-form.js';
+import './form.js';
