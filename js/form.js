@@ -1,6 +1,7 @@
-import { isEscape } from './util';
-import { onFormInp, resetForm } from './validation-form';
-
+import { isEscape } from './util.js';
+import { onFormInp, resetForm } from './validation-form.js';
+import { setDefaultScale } from './scale.js';
+import { setDefaultEffect } from './effect.js';
 
 const form = document.querySelector('.img-upload__form');
 const comment = document.querySelector('.text__description');
@@ -22,7 +23,7 @@ const onCloseClick = () => {
   cancelButton.removeEventListener('click', onCloseClick);
 };
 
-const isNotTarget = (evt) => !evt.target.classList.contains('text++hashtags') && !evt.target.classList.contains('text__description');
+const isNotTarget = (evt) => !evt.target.classList.contains('text__hashtags') && !evt.target.classList.contains('text__description');
 
 const onDocumentEscKeyDown = (evt) => {
   if(isNotTarget(evt) && isEscape(evt)) {
@@ -37,6 +38,8 @@ const onFile = () => {
   cancelButton.addEventListener('click', onCloseClick);
   document.addEventListener('keydown', onDocumentEscKeyDown);
   form.addEventListener('submit',onFormInp);
+  setDefaultScale();
+  setDefaultEffect();
 };
 
 uploadFileButton.addEventListener('input',onFile);
