@@ -1,45 +1,49 @@
 import { isEscape } from './util.js';
-import { onFormInp, resetForm } from './validation-form.js';
+import { onFormInp as onFormSubmit, resetForm } from './validation-form.js';
 import { setDefaultScale } from './scale.js';
 import { setDefaultEffect } from './effect.js';
 
 const form = document.querySelector('.img-upload__form');
-const comment = document.querySelector('.text__description');
-const overlay = document.querySelector('.img-upload__overlay');
-const hashtags = document.querySelector('.text__hashtags');
-const uploadFileButton = document.querySelector('#upload-file');
-const cancelButton = document.querySelector('#upload-cancel');
+const closingButton = form.querySelector('#upload-cancel');
+const uploadingField = form.querySelector('#upload-file');
+const overlay = form.querySelector('.img-upload__overlay');
 
-const onCloseClick = () => {
+const closeForm = () => {
   overlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
-
-  comment.value = '';
-  uploadFileButton.value = '';
-  hashtags.value = '';
-
+  uploadingField.value = '';
+  form.querySelector('.text__hashtags').value = '';
+  form.querySelector('.text__description').value = '';
   resetForm();
-  form.removeEventListener('submit', onFormInp);
-  cancelButton.removeEventListener('click', onCloseClick);
+  form.removeEventListener('submit', onFormSubmit);
 };
 
-const isNotTarget = (evt) => !evt.target.classList.contains('text__hashtags') && !evt.target.classList.contains('text__description');
+const onCloseClick = () => {
+  closeForm();
+  closingButton.removeEventListener('click', onCloseClick);
+};
+
+const onClosingButtonClick = () => onCloseClick();
+
+const isNotTarget = (evt) =>  !evt.target.classList.contains('text__descriptions') && !evt.target.classList.contains('text__hashtags');
 
 const onDocumentEscKeyDown = (evt) => {
-  if(isNotTarget(evt) && isEscape(evt)) {
+  if(isEscape(evt) && isNotTarget(evt)) {
     onCloseClick();
-    document.removeEventListener('keydown',onDocumentEscKeyDown);
+    document.removeEventListener('keydown', onDocumentEscKeyDown);
   }
 };
 
-const onFile = () => {
+const onUploadingFieldInput = () => {
   overlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  cancelButton.addEventListener('click', onCloseClick);
+  closingButton.addEventListener('click',onClosingButtonClick);
   document.addEventListener('keydown', onDocumentEscKeyDown);
-  form.addEventListener('submit',onFormInp);
+  form.addEventListener('submit', onFormSubmit);
+
   setDefaultScale();
   setDefaultEffect();
 };
 
-uploadFileButton.addEventListener('input',onFile);
+uploadingField.addEventListener('input',onUploadingFieldInput);
+export{closeForm, onDocumentEscKeyDown};
