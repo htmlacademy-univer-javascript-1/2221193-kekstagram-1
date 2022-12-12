@@ -1,3 +1,4 @@
+import { numDecline } from './numDecline.js';
 import { createComments } from './comments.js';
 import { isEscape } from './util.js';
 
@@ -23,8 +24,9 @@ const addComments = () => {
   else{
     commentsLoader.classList.remove('hidden');
   }
+  const decline = numDecline(listOfComments.length, 'комментария', 'комментариев', 'комментариев');
 
-  commentCounter.textContent = `${index} из ${listOfComments.length} комментариев`;
+  commentCounter.textContent = `${index} из ${listOfComments.length} ${decline}`;
 
   selectComments.forEach((value) =>{
     commentsLoader.appendChild(createComments(value,commentTemplate));
