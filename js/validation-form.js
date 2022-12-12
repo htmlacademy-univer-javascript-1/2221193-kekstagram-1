@@ -1,6 +1,11 @@
-const MAX_COMMENT_LENGTH = 140;
-const MAX_HASHTAGS = 5;
-const MAX_HASHTAG_LENGTH = 20;
+import { sendData } from './sending-form';
+
+const Values = {
+  COMMENT_SYMBOLS: 140,
+  HASHTAG_SYMBOLS: 20,
+  HASHTAG_COUNT:5,
+};
+
 let errorMessage = '';
 
 const inputComment = document.querySelector('.text__description');
@@ -49,12 +54,12 @@ const validateHash = (value) => {
       error: 'Хэш-теги не должны повторяться',
     },
     {
-      check: inputArray.some((item) => item.length > MAX_HASHTAG_LENGTH),
-      error: `Максимальная длина одного хэш-тега ${MAX_HASHTAG_LENGTH} символов, включая решётку`,
+      check: inputArray.some((item) => item.length > Values.HASHTAG_SYMBOLS),
+      error: `Максимальная длина одного хэш-тега ${Values.HASHTAG_SYMBOLS} символов, включая решётку`,
     },
     {
-      check: inputArray.length > MAX_HASHTAGS,
-      error: `Нельзя указать больше ${MAX_HASHTAGS} хэш-тегов`,
+      check: inputArray.length > Values.HASHTAG_COUNT,
+      error: `Нельзя указать больше ${Values.HASHTAG_COUNT} хэш-тегов`,
     },
     {
       check: inputArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
@@ -67,14 +72,16 @@ const validateHash = (value) => {
     if (isWrong){
       errorMessage = rule.error;
     }
+    return !isWrong;
   });
 };
 
-const confirmedComment = (value) => value.length <= MAX_COMMENT_LENGTH;
+const confirmedComment = (value) => value.length <= Values.COMMENT_SYMBOLS;
 
 const onFormInp = (evt) => {
+  evt.preventDefault();
   if(!pristine.validate()){
-    evt.preventDefault();
+    sendData();
   }
 };
 
@@ -83,6 +90,6 @@ const resetForm = () => {
 };
 
 pristine.addValidator(inputHashtag, validateHash, error);
-pristine.addValidator(inputComment,confirmedComment, `Длина комментария должна быть не более ${MAX_COMMENT_LENGTH } символов`,);
+pristine.addValidator(inputComment,confirmedComment, `Длина комментария должна быть не более ${Values.COMMENT_SYMBOLS} символов`,);
 
 export{onFormInp,resetForm};

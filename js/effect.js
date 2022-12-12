@@ -1,12 +1,14 @@
-const RADIX = 10;
-const MAX_EFFECT = 100;
-const MAX_BLUR = 3;
-const MAX_HEAT = 3;
-const EFFECT_STEP = 0.01;
+const Effect = {
+  STEP: 0.01,
+  MAX_VALUE: 100,
+  RADIX: 10,
+  MAX_BLUR: 3,
+  MAX_HEAT:3,
+};
 
 const SLIDER = {
   MIN: 0,
-  MAX: MAX_EFFECT,
+  MAX: Effect.MAX_VALUE,
   STEP: 1,
 };
 
@@ -31,7 +33,7 @@ noUiSlider.create(slider,{
   connect: 'lower',
 });
 
-const getEffectStep = (maxValue) => maxValue * EFFECT_STEP;
+const getEffectStep = (maxValue) => maxValue * Effect.STEP;
 
 const effects = {
   none: () => {
@@ -40,24 +42,24 @@ const effects = {
   },
   chrome: () => {
     effectLevel.classList.remove('visually-hidden');
-    return `grayscale(${parseInt(effectLevelValue.value, RADIX)* getEffectStep(1)})`;
+    return `grayscale(${parseInt(effectLevelValue.value, Effect.RADIX)* getEffectStep(1)})`;
   },
   sepia: () => {
     effectLevel.classList.remove('visually-hidden');
-    return `sepia(${parseInt(effectLevelValue.value, RADIX)* getEffectStep(1)})`;
+    return `sepia(${parseInt(effectLevelValue.value, Effect.RADIX)* getEffectStep(1)})`;
   },
   marvin: () => {
     effectLevel.classList.remove('visually-hidden');
-    return `invert(${parseInt(effectLevelValue.value, RADIX)* getEffectStep(MAX_EFFECT)}%) `;
+    return `invert(${parseInt(effectLevelValue.value, Effect.RADIX)* getEffectStep(Effect.MAX_VALUE)}%) `;
   },
   phobos: () => {
     effectLevel.classList.remove('visually-hidden');
-    return `blur(${parseInt(effectLevelValue.value, RADIX)* getEffectStep(MAX_BLUR)}px)`;
+    return `blur(${parseInt(effectLevelValue.value, Effect.RADIX)* getEffectStep(Effect.MAX_BLUR)}px)`;
   },
   heat: () => {
     effectLevel.classList.remove('visually-hidden');
-    const minEffect = SLIDER.MAX / (MAX_HEAT - 1);
-    return `brightness(${(minEffect + parseInt(effectLevelValue.value, RADIX))* getEffectStep(MAX_HEAT - 1)})`;
+    const minEffect = SLIDER.MAX / (Effect.MAX_HEAT - 1);
+    return `brightness(${(minEffect + parseInt(effectLevelValue.value, Effect.RADIX))* getEffectStep(Effect.MAX_HEAT - 1)})`;
   },
 };
 
