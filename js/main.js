@@ -5,12 +5,14 @@ import './form.js';
 import './big-picture.js';
 import { sendRequest } from './fetch.js';
 import { renderPictures } from './pictures.js';
+import './filter.js';
 
 let pictures = [];
 
 const onSuccess = (data) => {
   pictures = data.slice();
   renderPictures(pictures);
+  document.querySelector('.img-filters').classList.remove('img-filters--inactive');
 };
 
 const onFail = () => {
@@ -27,3 +29,6 @@ const onFail = () => {
   document.body.append(message);
 };
 sendRequest(onSuccess,onFail,'GET');
+const getData = () => pictures;
+
+export {getData};

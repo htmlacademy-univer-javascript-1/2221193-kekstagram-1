@@ -66,6 +66,7 @@ const effects = {
 const setDefaultEffect = () => {
   effectLevel.classList.add('visually-hidden');
 
+  form.querySelector('#effect-none').checked = true;
   img.className = defaultImgClass;
   img.style.filter = effects.none;
 };

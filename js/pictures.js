@@ -1,4 +1,3 @@
-import { objectsArray } from './data';
 import { openBigPicture} from './big-picture.js';
 
 const pictureTemp = document.querySelector('#picture').content.querySelector('.picture');
@@ -18,11 +17,12 @@ const renderPicture = (picture) => {
   return element;
 };
 
-const renderPictures = () => {
-  objectsArray.forEach((picture) => {
+const renderPictures = (photos) => {
+  photos.forEach((picture) => {
     fragment.appendChild(renderPicture(picture));
   });
   document.querySelector('.pictures').appendChild(fragment);
 };
+const clearPhotos = () => document.querySelectorAll('.picture').forEach((picture) => picture.remove());
 
-export {renderPictures};
+export {renderPictures,clearPhotos};
