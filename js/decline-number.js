@@ -1,4 +1,4 @@
-const numDecline = (num, nominative, genitiveSing, genitivePlural) => {
+const declineNum = (num, nominative, genitiveSing, genitivePlural) => {
   const hundreds = num%100;
   if (hundreds <= 4 || hundreds > 20){
     const tenths = num %10;
@@ -12,4 +12,4 @@ const numDecline = (num, nominative, genitiveSing, genitivePlural) => {
   return genitivePlural;
 };
 
-export{numDecline};
+export{declineNum};

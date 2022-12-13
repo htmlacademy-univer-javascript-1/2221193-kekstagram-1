@@ -1,13 +1,13 @@
-import {sendRequest} from './fetch.js';
 import { closeForm } from './form.js';
-import { isEscape } from './util.js';
 import { onDocumentEscKeyDown } from './form.js';
+import { isEscape } from './util.js';
+import {sendRequest} from './fetch.js';
 
 const MESSAGE_Z_INDEX = 100;
 
 const form = document.querySelector('.img-upload__form');
-const successTemplate = document.querySelector('#success').content.querySelector('.success');
-const errorTemplate = document.querySelector('#error').content.querySelector('.error');
+const success = document.querySelector('#success').content.querySelector('.success');
+const error = document.querySelector('#error').content.querySelector('.error');
 
 let message;
 
@@ -25,10 +25,10 @@ const onErrorEscapeKeyDown = (evt) => {
 
 const showMessage = (isSuccessful) => {
   if (isSuccessful){
-    message = successTemplate.cloneNode(true);
+    message = success.cloneNode(true);
   }
   else {
-    message = errorTemplate.cloneNode(true);
+    message = error.cloneNode(true);
     document.removeEventListener('keydown', onDocumentEscKeyDown);
     document.addEventListener('keydown', onErrorEscapeKeyDown);
   }
@@ -60,8 +60,9 @@ const onFail = () => {
 
 const onFormEscKeyDown = (evt) => {
   if(isEscape(evt)){
-    closeMessage();
-
+    if(message){
+      closeMessage();
+    }
     if (message.classList.contains('success')){
       closeForm();
     }

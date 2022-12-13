@@ -1,10 +1,10 @@
-import { getRandomElement, debounce } from './util';
-import { renderPictures, clearPhotos } from './pictures';
 import { getData } from './main';
+import { renderPictures, clearPhotos } from './pictures';
+import { getRandomElement, debounce } from './util';
 
 const RANDOM_PHOTOS_COUNT = 10;
 
-const filterForm = document.querySelector('.img-filters__form');
+const formFilter = document.querySelector('.img-filters__form');
 
 const comparePhotos = (firstPhoto, secondPhoto) => secondPhoto.comments.length - firstPhoto.comments.length;
 
@@ -16,9 +16,9 @@ const filter = {
 
 const onFilterClick = debounce((evt) => {
   if(evt.target.tagName === 'BUTTON') {
-    const selectedButton = filterForm.querySelector('.img-filters__button--active');
-    if(selectedButton){
-      selectedButton.classList.remove('img-filters__button--active');
+    const button = formFilter.querySelector('.img-filters__button--active');
+    if(button){
+      button.classList.remove('img-filters__button--active');
     }
     evt.target.classList.add('img-filters__button--active');
 
@@ -27,4 +27,4 @@ const onFilterClick = debounce((evt) => {
   }
 });
 
-filterForm.addEventListener('click', onFilterClick);
+formFilter.addEventListener('click', onFilterClick);

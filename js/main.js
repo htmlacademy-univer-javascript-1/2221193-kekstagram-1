@@ -3,9 +3,10 @@ import './effect.js';
 import './validation-form.js';
 import './form.js';
 import './big-picture.js';
+import './upload-picture';
+import './filter.js';
 import { sendRequest } from './fetch.js';
 import { renderPictures } from './pictures.js';
-import './filter.js';
 
 let pictures = [];
 
@@ -28,7 +29,9 @@ const onFail = () => {
   message.textContent = 'Ошибка загрузки данных';
   document.body.append(message);
 };
-sendRequest(onSuccess,onFail,'GET');
 const getData = () => pictures;
+
+sendRequest(onSuccess,onFail,'GET');
+
 
 export {getData};

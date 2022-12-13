@@ -1,4 +1,4 @@
-import { numDecline } from './numDecline.js';
+import { declineNum } from './decline-number.js';
 import { createComments } from './comments.js';
 import { isEscape } from './util.js';
 
@@ -18,13 +18,13 @@ const addComments = () => {
   index = (listOfComments.length < index) ? listOfComments.length: index;
   const selectComments = listOfComments.slice(0, index);
 
-  if (listOfComments.length <= COMMENTS_LIST || index >= listOfComments.length){
+  if (index >= listOfComments.length || listOfComments.length <= COMMENTS_LIST ){
     commentsLoader.classList.add('hidden');
   }
   else{
     commentsLoader.classList.remove('hidden');
   }
-  const decline = numDecline(listOfComments.length, 'комментария', 'комментариев', 'комментариев');
+  const decline = declineNum(listOfComments.length, 'комментария', 'комментариев', 'комментариев');
 
   commentCounter.textContent = `${index} из ${listOfComments.length} ${decline}`;
 

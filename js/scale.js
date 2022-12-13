@@ -33,7 +33,7 @@ const onScaleControlClick = (evt) => {
     let scaleValue = scaleField.value;
     const coefficient = target.classList.contains('scale__control--smaller') ? -1 : 1;
     scaleValue = scaleField.value.substr(0,scaleValue.length - 1);
-    scaleValue = parseInt(scaleValue,RADIX) + Scale.STEP * coefficient;
+    scaleValue = parseInt(scaleValue,RADIX) + coefficient * Scale.STEP;
     scaleValue = setCorrectValue(scaleValue);
     img.style = `transform: scale(${scaleValue / Scale.MAX})`;
     scaleField.value = `${scaleValue}%`;

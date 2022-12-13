@@ -1,7 +1,7 @@
 import { isEscape } from './util.js';
 import { onFormInp as onFormSubmit, resetForm } from './validation-form.js';
-import { setDefaultScale } from './scale.js';
 import { setDefaultEffect } from './effect.js';
+import { setDefaultScale } from './scale.js';
 
 const form = document.querySelector('.img-upload__form');
 const closingButton = form.querySelector('#upload-cancel');
