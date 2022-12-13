@@ -35,14 +35,13 @@ const onDocumentEscKeyDown = (evt) => {
 };
 
 const onUploadingFieldInput = () => {
+  setDefaultScale();
+  setDefaultEffect();
   overlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   closingButton.addEventListener('click',onClosingButtonClick);
   document.addEventListener('keydown', onDocumentEscKeyDown);
   form.addEventListener('submit', onFormSubmit);
-
-  setDefaultScale();
-  setDefaultEffect();
 };
 
 uploadingField.addEventListener('input',onUploadingFieldInput);
