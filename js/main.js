@@ -1,37 +1,37 @@
-import './scale.js';
-import './effect.js';
-import './validation-form.js';
-import './form.js';
+import {renderPhotos} from'./pictures.js';
+import {sendRequest} from './fetch.js';
+import './picture-upload.js';
 import './big-picture.js';
-import './upload-picture';
-import './filter.js';
-import { sendRequest } from './fetch.js';
-import { renderPictures } from './pictures.js';
+import './form.js';
+import './form-validation.js';
+import './effects.js';
+import './filters.js';
+import './scale.js';
 
-let pictures = [];
+let photos = [];
 
 const onSuccess = (data) => {
-  pictures = data.slice();
-  renderPictures(pictures);
+  photos = data.slice();
+  renderPhotos(photos);
   document.querySelector('.img-filters').classList.remove('img-filters--inactive');
 };
 
 const onFail = () => {
-  const message = document.createElement('div');
-  message.style.left = 0;
-  message.style.right = 0;
-  message.style.top = 0;
-  message.style.position = 'absolute';
-  message.style.fontSize = '30px';
-  message.style.textAlign = 'center';
-  message.style.padding = '10px 5px';
-  message.style.backgroundColor = 'red';
-  message.textContent = 'Ошибка загрузки данных';
-  document.body.append(message);
+  const messageAlert = document.createElement('div');
+  messageAlert.style.position = 'absolute';
+  messageAlert.style.left = 0;
+  messageAlert.style.top = 0;
+  messageAlert.style.right = 0;
+  messageAlert.style.textAlign = 'center';
+  messageAlert.style.fontSize = '30px';
+  messageAlert.style.backgroundColor = 'red';
+  messageAlert.style.padding = '10px 5px';
+  messageAlert.textContent = 'Ошибка загрузки данных';
+  document.body.append(messageAlert);
 };
-const getData = () => pictures;
 
-sendRequest(onSuccess,onFail,'GET');
+const getData = () => photos;
 
+sendRequest(onSuccess, onFail, 'GET');
 
 export {getData};

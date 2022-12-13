@@ -1,11 +1,12 @@
-const createComments = (comment, template) => {
+const createComment = (currentComment, template) => {
   const newComment = template.cloneNode(true);
-  const picture = newComment.querySelector('.social__picture');
-  picture.src = comment.avatar;
-  picture.alt = comment.name;
-  newComment.querySelector('.social__text').textContent = comment.message;
+  const avatar = newComment.querySelector('.social__picture');
+  avatar.src = currentComment.avatar;
+  avatar.alt = currentComment.name;
+  newComment.querySelector('.social__text').textContent = currentComment.message;
 
   return newComment;
 };
 
-export{createComments};
+export{createComment};
+

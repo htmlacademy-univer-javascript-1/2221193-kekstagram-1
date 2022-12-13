@@ -1,79 +1,84 @@
-import { declineNum } from './decline-number.js';
-import { createComments } from './comments.js';
+import { createComment } from './comments.js';
 import { isEscape } from './util.js';
+import { declineNumber as declineNum } from './number-declination.js';
 
-const COMMENTS_LIST = 5;
+const COMMENTS_STEP = 5;
 
 const bigPicture = document.querySelector('.big-picture');
 const commentCounter = document.querySelector('.social__comment-count');
-const commentsLoader = document.querySelector('.comments-loader');
+const commentLoader = document.querySelector('.comments-loader');
 const closingButton = bigPicture.querySelector('.big-picture__cancel');
-const commentTemplate = bigPicture.querySelector('.social__comment');
-const newComments = bigPicture.querySelector('.social__comments');
-let index = COMMENTS_LIST;
-let listOfComments = [];
+const template = bigPicture.querySelector('.social__comment');
+const comments = bigPicture.querySelector('.social__comments');
+
+let index = COMMENTS_STEP;
+let commentsList = [];
 
 const addComments = () => {
-  newComments.innerHTML = '';
-  index = (listOfComments.length < index) ? listOfComments.length: index;
-  const selectComments = listOfComments.slice(0, index);
+  comments.innerHTML = '';
 
-  if (index >= listOfComments.length || listOfComments.length <= COMMENTS_LIST ){
-    commentsLoader.classList.add('hidden');
+  index = (index > commentsList.length) ? commentsList.length: index;
+
+  const commentsSelected = commentsList.slice(0, index);
+
+  if(commentsList.length <= COMMENTS_STEP || index >= commentsList.length)
+  {
+    commentLoader.classList.add('hidden');
   }
   else{
-    commentsLoader.classList.remove('hidden');
+    commentLoader.classList.remove('hidden');
   }
-  const decline = declineNum(listOfComments.length, 'комментария', 'комментариев', 'комментариев');
 
-  commentCounter.textContent = `${index} из ${listOfComments.length} ${decline}`;
+  const commentsDecline = declineNum(commentsList.length, 'комментария', 'комментариев', 'комментариев');
+  commentCounter.textContent = `${index} из ${commentsList.length} ${commentsDecline}`;
 
-  selectComments.forEach((value) =>{
-    commentsLoader.appendChild(createComments(value,commentTemplate));
+  commentsSelected.forEach((comment) => {
+    comments.appendChild(createComment(comment, template));
   });
 };
 
-const onCommentsLoadClick = () => {
-  index += COMMENTS_LIST;
+const onCommentLoaderClick = () => {
+  index += COMMENTS_STEP;
   addComments();
 };
 
-const closePhoto = () => {
+const closePicture = () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  listOfComments = [];
-  index = COMMENTS_LIST;
-  commentsLoader.removeEventListener('click',onCommentsLoadClick);
+
+  commentsList = [];
+  index = COMMENTS_STEP;
+  commentLoader.removeEventListener('click', onCommentLoaderClick);
 };
 
 const onDocumentEscKeyDown = (evt) => {
   if(isEscape(evt)){
-    closePhoto();
+    closePicture();
   }
 };
 
-const onCloseButtonClick = () => {
-  closePhoto();
-  closingButton.removeEventListener('click', onCloseButtonClick);
+const onClosingButtonClick = () => {
+  closePicture();
+  closingButton.removeEventListener('click', onClosingButtonClick);
 };
 
-const openBigPicture = (picture) => {
+const openBigPicture = (picture) =>{
   document.body.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
   commentCounter.classList.remove('hidden');
-  commentsLoader.classList.remove('hidden');
+  commentLoader.classList.remove('hidden');
+
   bigPicture.querySelector('.big-picture__img').querySelector('img').src = picture.url;
   bigPicture.querySelector('.likes-count').textContent = picture.likes;
   bigPicture.querySelector('.social__caption').textContent = picture.description;
 
-  listOfComments = picture.newComments;
+  commentsList = picture.comments;
 
   addComments();
 
-  commentsLoader.addEventListener('click',onCommentsLoadClick);
-  document.addEventListener('keydown',onDocumentEscKeyDown);
-  closingButton.addEventListener('click',onCloseButtonClick);
+  commentLoader.addEventListener('click', onCommentLoaderClick);
+  document.addEventListener('keydown', onDocumentEscKeyDown);
+  closingButton.addEventListener('click', onClosingButtonClick);
 };
 
-export{openBigPicture};
-
+export {openBigPicture};
