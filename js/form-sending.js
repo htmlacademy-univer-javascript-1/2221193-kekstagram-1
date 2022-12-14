@@ -1,6 +1,6 @@
 import {sendRequest} from './fetch.js';
 import { onDocumentEscKeyDown } from './form.js';
-import { isEscape } from './util.js';
+import { isEscape } from './utils.js';
 import { closeForm } from './form.js';
 
 const MESSAGE_Z_INDEX = 100;

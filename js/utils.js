@@ -1,8 +1,15 @@
-import { getRandomNumber } from './random-number.js';
-
 const DELAY = 500;
 
 const isEscape = (evt) => evt.key === 'Escape';
+
+const getRandomNumber = (min, max) => {
+  if(min < 0 || max < 0){
+    return -1;
+  }
+  min = Math.min(min,max);
+  max = Math.max(min, max);
+  return Math.round(Math.random()* (max - min) + min);
+};
 
 const getRandomElements = (elements, count) => {
   const element = [];

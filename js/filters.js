@@ -1,6 +1,6 @@
 import { renderPhotos, clearPhotos } from './pictures.js';
 import { getData } from './main.js';
-import { getRandomElements, debounce } from './util.js';
+import { getRandomElements, debounce } from './utils.js';
 
 const RANDOM_PHOTOS = 10;
 

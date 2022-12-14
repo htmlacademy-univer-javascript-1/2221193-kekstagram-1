@@ -1,6 +1,6 @@
 import { onFormInput as onFormSubmit, resetForm} from './form-validation.js';
 import { setDefaultScale } from './scale.js';
-import { isEscape } from './util.js';
+import { isEscape } from './utils.js';
 import { setDefaultEffect } from './effects.js';
 
 const form = document.querySelector('.img-upload__form');

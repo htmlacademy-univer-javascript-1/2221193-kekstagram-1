@@ -1,5 +1,4 @@
-import { createComment } from './comments.js';
-import { isEscape } from './util.js';
+import { isEscape } from './utils.js';
 import { declineNumber as declineNum } from './number-declination.js';
 
 const COMMENTS_STEP = 5;
@@ -7,12 +6,22 @@ const COMMENTS_STEP = 5;
 const bigPicture = document.querySelector('.big-picture');
 const commentCounter = document.querySelector('.social__comment-count');
 const commentLoader = document.querySelector('.comments-loader');
-const closingButton = bigPicture.querySelector('.big-picture__cancel');
-const template = bigPicture.querySelector('.social__comment');
+const closedButton = bigPicture.querySelector('.big-picture__cancel');
+const commentTemplate = bigPicture.querySelector('.social__comment');
 const comments = bigPicture.querySelector('.social__comments');
 
 let index = COMMENTS_STEP;
 let commentsList = [];
+
+const createComment = (currentComment, template) => {
+  const newComment = template.cloneNode(true);
+  const avatar = newComment.querySelector('.social__picture');
+  avatar.src = currentComment.avatar;
+  avatar.alt = currentComment.name;
+  newComment.querySelector('.social__text').textContent = currentComment.message;
+
+  return newComment;
+};
 
 const addComments = () => {
   comments.innerHTML = '';
@@ -33,7 +42,7 @@ const addComments = () => {
   commentCounter.textContent = `${index} из ${commentsList.length} ${commentsDecline}`;
 
   commentsSelected.forEach((comment) => {
-    comments.appendChild(createComment(comment, template));
+    comments.appendChild(createComment(comment, commentTemplate));
   });
 };
 
@@ -59,7 +68,7 @@ const onDocumentEscKeyDown = (evt) => {
 
 const onClosingButtonClick = () => {
   closePicture();
-  closingButton.removeEventListener('click', onClosingButtonClick);
+  closedButton.removeEventListener('click', onClosingButtonClick);
 };
 
 const openBigPicture = (picture) =>{
@@ -78,7 +87,7 @@ const openBigPicture = (picture) =>{
 
   commentLoader.addEventListener('click', onCommentLoaderClick);
   document.addEventListener('keydown', onDocumentEscKeyDown);
-  closingButton.addEventListener('click', onClosingButtonClick);
+  closedButton.addEventListener('click', onClosingButtonClick);
 };
 
 export {openBigPicture};

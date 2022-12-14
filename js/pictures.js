@@ -1,10 +1,10 @@
 import { openBigPicture } from './big-picture.js';
 
-const template = document.querySelector('#picture').content.querySelector('.picture');
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const fragment = document.createDocumentFragment();
 
 const renderPhoto = (picture) => {
-  const element = template.cloneNode(true);
+  const element = pictureTemplate.cloneNode(true);
   element.querySelector('.picture__img').src = picture.url;
   element.querySelector('.picture__likes').textContent = picture.likes;
   element.querySelector('.picture__comments').textContent = picture.comments.length;
