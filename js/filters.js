@@ -14,7 +14,7 @@ const filters = {
   'filter-discussed': (pictures) => pictures.slice().sort(compareDiscussedPhotos),
 };
 
-const onFilterFormClicked = debounce((evt) => {
+const onFilterClicked = debounce((evt) => {
   if(evt.target.tagName === 'BUTTON') {
     const selectedButton = filtersForm.querySelector('.img-filters__button--active');
 
@@ -29,4 +29,4 @@ const onFilterFormClicked = debounce((evt) => {
   }
 });
 
-filtersForm.addEventListener('click', onFilterFormClicked);
+filtersForm.addEventListener('click', onFilterClicked);

@@ -11,13 +11,13 @@ const success = document.querySelector('#success').content.querySelector('.succe
 
 let message;
 
-const messageClose = () => {
+const closeMessage = () => {
   message.classList.add('hidden');
 };
 
 const onErrorEscapeKeyDown = (evt) => {
   if(isEscape(evt)) {
-    messageClose();
+    closeMessage();
     document.addEventListener('keydown', onDocumentEscKeyDown);
     document.removeEventListener('keydown', onErrorEscapeKeyDown);
   }
@@ -40,13 +40,13 @@ const showMessage = (isSuccessful) => {
 };
 
 const closeSendingForm = () => {
-  messageClose();
+  closeMessage();
   closeForm();
 };
 
 const onSuccessButtonClick = () => closeSendingForm();
 
-const onErrorButtonClick = () => messageClose();
+const onErrorButtonClick = () => closeMessage();
 
 const onSuccess = () => {
   showMessage(true);
@@ -61,7 +61,7 @@ const onFail = () => {
 const onFormEscKeyDown = (evt) => {
   if(isEscape(evt)){
     if(message){
-      messageClose();
+      closeMessage();
     }
 
     if (message.classList.contains('success')){

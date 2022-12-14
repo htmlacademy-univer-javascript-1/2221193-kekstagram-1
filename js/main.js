@@ -1,8 +1,8 @@
 import {renderPhotos} from'./pictures.js';
 import {sendRequest} from './fetch.js';
+import './form.js';
 import './picture-upload.js';
 import './big-picture.js';
-import './form.js';
 import './form-validation.js';
 import './effects.js';
 import './filters.js';
@@ -10,8 +10,8 @@ import './scale.js';
 
 let photos = [];
 
-const onSuccess = (data) => {
-  photos = data.slice();
+const onSuccess = (value) => {
+  photos = value.slice();
   renderPhotos(photos);
   document.querySelector('.img-filters').classList.remove('img-filters--inactive');
 };

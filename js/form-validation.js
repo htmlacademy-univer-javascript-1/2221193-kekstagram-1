@@ -1,7 +1,7 @@
 import { sendData } from './form-sending.js';
 
 const MaxValues = {
-  COMMENT_SYNBOLS: 140,
+  COMMENT_SYMBOLS: 140,
   HASHTAG_SYMBOLS: 20,
   HASHTAGS: 5,
 };
@@ -76,7 +76,7 @@ const validateHashtag = (value) => {
   });
 };
 
-const validateComment = (value) => value.length <= MaxValues.COMMENT_SYNBOLS;
+const validateComment = (value) => value.length <= MaxValues.COMMENT_SYMBOLS;
 
 const onFormInput = (evt) => {
   evt.preventDefault();
@@ -93,7 +93,7 @@ const resetForm = () => {
 pristine.addValidator(hashtag, validateHashtag, error);
 
 pristine.addValidator(description, validateComment,
-  `Длина комментария должна быть не более ${MaxValues.COMMENT_SYNBOLS} символов`,
+  `Длина комментария должна быть не более ${MaxValues.COMMENT_SYMBOLS} символов`,
 );
 
 export {onFormInput, resetForm};
