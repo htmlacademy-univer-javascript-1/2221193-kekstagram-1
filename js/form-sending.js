@@ -1,13 +1,13 @@
 import {sendRequest} from './fetch.js';
-import { closeForm } from './form.js';
-import { isEscape } from './util.js';
 import { onDocumentEscKeyDown } from './form.js';
+import { isEscape } from './utils.js';
+import { closeForm } from './form.js';
 
 const MESSAGE_Z_INDEX = 100;
 
 const form = document.querySelector('.img-upload__form');
-const successTemplate = document.querySelector('#success').content.querySelector('.success');
-const errorTemplate = document.querySelector('#error').content.querySelector('.error');
+const error = document.querySelector('#error').content.querySelector('.error');
+const success = document.querySelector('#success').content.querySelector('.success');
 
 let message;
 
@@ -23,12 +23,12 @@ const onErrorEscapeKeyDown = (evt) => {
   }
 };
 
-const showMessage = (isSuccessful) => {
+const showMessages = (isSuccessful) => {
   if (isSuccessful){
-    message = successTemplate.cloneNode(true);
+    message = success.cloneNode(true);
   }
   else {
-    message = errorTemplate.cloneNode(true);
+    message = error.cloneNode(true);
     document.removeEventListener('keydown', onDocumentEscKeyDown);
     document.addEventListener('keydown', onErrorEscapeKeyDown);
   }
@@ -44,23 +44,25 @@ const closeSendingForm = () => {
   closeForm();
 };
 
-const onSuccessButtonClicked = () => closeSendingForm();
+const onSuccessButtonClick = () => closeSendingForm();
 
-const onErrorButtonClicked = () => closeMessage();
+const onErrorButtonClick = () => closeMessage();
 
 const onSuccess = () => {
-  showMessage(true);
-  message.addEventListener('click', onSuccessButtonClicked);
+  showMessages(true);
+  message.addEventListener('click', onSuccessButtonClick);
 };
 
 const onFail = () => {
-  showMessage(false);
-  message.addEventListener('click', onErrorButtonClicked);
+  showMessages(false);
+  message.addEventListener('click', onErrorButtonClick);
 };
 
 const onFormEscKeyDown = (evt) => {
   if(isEscape(evt)){
-    closeMessage();
+    if(message){
+      closeMessage();
+    }
 
     if (message.classList.contains('success')){
       closeForm();
