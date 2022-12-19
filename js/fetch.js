@@ -20,4 +20,4 @@ const sendRequest = (onSuccess, onFail, method, body) => {
     });
 };
 
-export {sendRequest};
+export { sendRequest };

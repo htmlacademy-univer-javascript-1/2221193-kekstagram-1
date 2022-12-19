@@ -1,6 +1,6 @@
 import { sendData } from './form-sending.js';
 
-const MaxValues = {
+const MaxValue = {
   COMMENT_SYMBOLS: 140,
   HASHTAG_SYMBOLS: 20,
   HASHTAGS: 5,
@@ -54,12 +54,12 @@ const validateHashtag = (value) => {
       error: 'Хэш-теги не должны повторяться',
     },
     {
-      check: inputArray.some((item) => item.length > MaxValues.HASHTAG_SYMBOLS),
-      error: `Максимальная длина одного хэш-тега ${MaxValues.HASHTAG_SYMBOLS} символов, включая решётку`,
+      check: inputArray.some((item) => item.length > MaxValue.HASHTAG_SYMBOLS),
+      error: `Максимальная длина одного хэш-тега ${MaxValue.HASHTAG_SYMBOLS} символов, включая решётку`,
     },
     {
-      check: inputArray.length > MaxValues.HASHTAGS,
-      error: `Нельзя указать больше ${MaxValues.HASHTAGS} хэш-тегов`,
+      check: inputArray.length > MaxValue.HASHTAGS,
+      error: `Нельзя указать больше ${MaxValue.HASHTAGS} хэш-тегов`,
     },
     {
       check: inputArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
@@ -76,7 +76,7 @@ const validateHashtag = (value) => {
   });
 };
 
-const validateComment = (value) => value.length <= MaxValues.COMMENT_SYMBOLS;
+const validateComments = (value) => value.length <= MaxValue.COMMENT_SYMBOLS;
 
 const onFormInput = (evt) => {
   evt.preventDefault();
@@ -92,8 +92,8 @@ const resetForm = () => {
 
 pristine.addValidator(hashtag, validateHashtag, error);
 
-pristine.addValidator(description, validateComment,
-  `Длина комментария должна быть не более ${MaxValues.COMMENT_SYMBOLS} символов`,
+pristine.addValidator(description, validateComments,
+  `Длина комментария должна быть не более ${MaxValue.COMMENT_SYMBOLS} символов`,
 );
 
 export {onFormInput, resetForm};

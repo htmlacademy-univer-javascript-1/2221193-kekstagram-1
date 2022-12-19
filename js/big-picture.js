@@ -11,9 +11,9 @@ const commentTemplate = bigPicture.querySelector('.social__comment');
 const comments = bigPicture.querySelector('.social__comments');
 
 let index = COMMENTS_STEP;
-let commentsList = [];
+let currentComments = [];
 
-const createComment = (currentComment, template) => {
+const createComments = (currentComment, template) => {
   const newComment = template.cloneNode(true);
   const avatar = newComment.querySelector('.social__picture');
   avatar.src = currentComment.avatar;
@@ -26,11 +26,11 @@ const createComment = (currentComment, template) => {
 const addComments = () => {
   comments.innerHTML = '';
 
-  index = (index > commentsList.length) ? commentsList.length: index;
+  index = (index > currentComments.length) ? currentComments.length: index;
 
-  const commentsSelected = commentsList.slice(0, index);
+  const commentsSelected = currentComments.slice(0, index);
 
-  if(commentsList.length <= COMMENTS_STEP || index >= commentsList.length)
+  if(currentComments.length <= COMMENTS_STEP || index >= currentComments.length)
   {
     commentLoader.classList.add('hidden');
   }
@@ -38,11 +38,11 @@ const addComments = () => {
     commentLoader.classList.remove('hidden');
   }
 
-  const commentsDecline = declineNum(commentsList.length, 'комментария', 'комментариев', 'комментариев');
-  commentCounter.textContent = `${index} из ${commentsList.length} ${commentsDecline}`;
+  const commentsDecline = declineNum(currentComments.length, 'комментария', 'комментариев', 'комментариев');
+  commentCounter.textContent = `${index} из ${currentComments.length} ${commentsDecline}`;
 
   commentsSelected.forEach((comment) => {
-    comments.appendChild(createComment(comment, commentTemplate));
+    comments.appendChild(createComments(comment, commentTemplate));
   });
 };
 
@@ -55,7 +55,7 @@ const closePicture = () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
-  commentsList = [];
+  currentComments = [];
   index = COMMENTS_STEP;
   commentLoader.removeEventListener('click', onCommentLoaderClick);
 };
@@ -81,7 +81,7 @@ const openBigPicture = (picture) =>{
   bigPicture.querySelector('.likes-count').textContent = picture.likes;
   bigPicture.querySelector('.social__caption').textContent = picture.description;
 
-  commentsList = picture.comments;
+  currentComments = picture.comments;
 
   addComments();
 

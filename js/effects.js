@@ -33,7 +33,7 @@ noUiSlider.create(slider, {
   connect: 'lower',
 });
 
-const getEffectStep = (effectMaxValue) => effectMaxValue * Effects.STEP;
+const getEffectsStep = (effectMaxValue) => effectMaxValue * Effects.STEP;
 
 const effects = {
   none: () => {
@@ -43,28 +43,28 @@ const effects = {
 
   chrome: () => {
     effectLevel.classList.remove('visually-hidden');
-    return `grayscale(${parseInt(effectLevelValue.value, Effects.RADIX)* getEffectStep(1)})`;
+    return `grayscale(${parseInt(effectLevelValue.value, Effects.RADIX)* getEffectsStep(1)})`;
   },
 
   sepia: () => {
     effectLevel.classList.remove('visually-hidden');
-    return `sepia(${parseInt(effectLevelValue.value, Effects.RADIX)* getEffectStep(1)})`;
+    return `sepia(${parseInt(effectLevelValue.value, Effects.RADIX)* getEffectsStep(1)})`;
   },
 
   marvin: () => {
     effectLevel.classList.remove('visually-hidden');
-    return `invert(${parseInt(effectLevelValue.value, Effects.RADIX)* getEffectStep(Effects.MAX_VALUE)}%) `;
+    return `invert(${parseInt(effectLevelValue.value, Effects.RADIX)* getEffectsStep(Effects.MAX_VALUE)}%) `;
   },
 
   phobos: () => {
     effectLevel.classList.remove('visually-hidden');
-    return `blur(${parseInt(effectLevelValue.value, Effects.RADIX)* getEffectStep(Effects.MAX_BLUR)}px)`;
+    return `blur(${parseInt(effectLevelValue.value, Effects.RADIX)* getEffectsStep(Effects.MAX_BLUR)}px)`;
   },
 
   heat: () => {
     effectLevel.classList.remove('visually-hidden');
     const effectMin = Slider.MAX / (Effects.MAX_HEAT - 1);
-    return `brightness(${(effectMin + parseInt(effectLevelValue.value, Effects.RADIX))* getEffectStep(Effects.MAX_HEAT - 1)})`;
+    return `brightness(${(effectMin + parseInt(effectLevelValue.value, Effects.RADIX))* getEffectsStep(Effects.MAX_HEAT - 1)})`;
   },
 };
 

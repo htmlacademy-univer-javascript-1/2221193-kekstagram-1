@@ -23,7 +23,7 @@ const onErrorEscapeKeyDown = (evt) => {
   }
 };
 
-const showMessage = (isSuccessful) => {
+const showMessages = (isSuccessful) => {
   if (isSuccessful){
     message = success.cloneNode(true);
   }
@@ -49,12 +49,12 @@ const onSuccessButtonClick = () => closeSendingForm();
 const onErrorButtonClick = () => closeMessage();
 
 const onSuccess = () => {
-  showMessage(true);
+  showMessages(true);
   message.addEventListener('click', onSuccessButtonClick);
 };
 
 const onFail = () => {
-  showMessage(false);
+  showMessages(false);
   message.addEventListener('click', onErrorButtonClick);
 };
 
